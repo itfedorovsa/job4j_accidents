@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,7 +32,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup" opacity="3">
             <div class="navbar-nav">
+
                 <a class="nav-item nav-link active" href="#">All accidents<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" th:href="@{/formAddAccident}">Add accident</a>
                 <a class="nav-item nav-link" th:if="${user.name == 'Guest'}" th:href="@{/loginPage}">
                     <span th:text="${user.name}"></span>
                     <span> | Log in</span>
@@ -61,6 +63,7 @@
                 <tbody>
                 <tr th:each="accident: ${allAccidents}">
                     <th>
+                        <a th:href="@{|/formUpdateAccident/${accident.id}|}" th:text="${accident.name}"></a>
                         <span th:text="${accident.name}"></span>
                     </th>
                     <th>

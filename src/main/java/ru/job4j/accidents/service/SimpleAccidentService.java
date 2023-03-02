@@ -5,6 +5,7 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Accident service layer
@@ -21,6 +22,21 @@ public class SimpleAccidentService implements AccidentService {
     @Override
     public List<Accident> findAllAccidents() {
         return store.findAllAccidents();
+    }
+
+    @Override
+    public void saveAccident(Accident accident) {
+        store.saveAccident(accident);
+    }
+
+    @Override
+    public void updateAccident(Accident accident) {
+        store.updateAccident(accident);
+    }
+
+    @Override
+    public Optional<Accident> findAccidentById(int accidentId) {
+        return store.findAccidentById(accidentId);
     }
 
 }
