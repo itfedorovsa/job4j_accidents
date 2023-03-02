@@ -15,11 +15,11 @@ Implemented with:
 # Environment requirements
 
 <ul>
- <li>Create db "cars". Login: postgres, password: password</li>
+ <li>Create db "accidents". Login: postgres, password: password</li>
  <li>Create .jar file via maven command "mvn package"</li>
  <li>Go to the Target folder and check the presence of "job4j_accidents-1.0-SNAPSHOT.jar" file</li>
  <li>Open the command line, go to the Target folder</li>
- <li>Run this file through "java -jar job4j_cars-1.0-SNAPSHOT.jar" command</li>
+ <li>Run this file through "java -jar job4j_accidents-1.0-SNAPSHOT.jar" command</li>
  <li>Then go to the http://localhost:8080/index page</li>
 </ul>
 
