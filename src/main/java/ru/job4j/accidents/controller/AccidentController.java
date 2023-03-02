@@ -1,5 +1,7 @@
 package ru.job4j.accidents.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.service.AccidentService;
+import ru.job4j.accidents.service.AccidentTypeService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -25,6 +28,10 @@ import java.util.NoSuchElementException;
 public class AccidentController implements UserSessionController {
 
     AccidentService accidentService;
+
+    AccidentTypeService accidentTypeService;
+
+    private final Logger logger = LoggerFactory.getLogger(AccidentController.class);
 
     /**
      * Add User in Model by "user" key in all Model in this controller
@@ -56,7 +63,8 @@ public class AccidentController implements UserSessionController {
      * @return formAddAccident.html - accident adding page
      */
     @GetMapping("/formAddAccident")
-    public String formAddAccident() {
+    public String formAddAccident(Model model) {
+        model.addAttribute("types", accidentTypeService.findAllAccidentTypes());
         return "formAddAccident";
     }
 
@@ -82,7 +90,11 @@ public class AccidentController implements UserSessionController {
     @GetMapping("/formUpdateAccident")
     public String formUpdateTask(Model model, @RequestParam("accidentId") int accidentId) {
         Accident accidentById = accidentService.findAccidentById(accidentId)
-                .orElseThrow(() -> new NoSuchElementException("Accident with id " + accidentId + " is missing."));
+                .orElseThrow(() -> {
+                    String errorMessage = "Accident with id " + accidentId + " is missing.";
+                    logger.error(errorMessage);
+                    return new NoSuchElementException(errorMessage);
+                });
         model.addAttribute("accident", accidentById);
         return "accident/updateAccident";
     }

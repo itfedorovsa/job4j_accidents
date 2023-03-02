@@ -1,17 +1,16 @@
 package ru.job4j.accidents.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Memory accident repository
+ * Memory Accident repository
  *
  * @author itfedorovsa (itfedorovsa@gmail.com)
  * @version 1.0
@@ -24,11 +23,23 @@ public class MemoryAccidentRepository implements AccidentRepository {
 
     private final AtomicInteger nextId = new AtomicInteger(0);
 
+    private final Logger logger = LoggerFactory.getLogger(MemoryAccidentRepository.class);
+
+    /**
+     * Find all Accident
+     *
+     * @return List of Accident
+     */
     @Override
     public List<Accident> findAllAccidents() {
         return new ArrayList<>(accidents.values());
     }
 
+    /**
+     * Save Accident
+     *
+     * @param accident Accident
+     */
     @Override
     public void saveAccident(Accident accident) {
         int newId = nextId.incrementAndGet();
@@ -36,16 +47,29 @@ public class MemoryAccidentRepository implements AccidentRepository {
         accidents.put(newId, accident);
     }
 
+    /**
+     * Update Accident
+     *
+     * @param accident Accident
+     */
     @Override
     public void updateAccident(Accident accident) {
         int accidentId = accident.getId();
         if (accidents.containsKey(accidentId)) {
             accidents.put(accidentId, accident);
         } else {
-            throw new IllegalArgumentException("An accident with this id is missing");
+            String errorMessage = "Accident with id " + accidentId + " is missing.";
+            logger.error(errorMessage);
+            throw new NoSuchElementException("An accident with this id is missing");
         }
     }
 
+    /**
+     * Find accident by id
+     *
+     * @param accidentId Accident id
+     * @return Optional of AccidentType or empty Optional
+     */
     @Override
     public Optional<Accident> findAccidentById(int accidentId) {
         return Optional.of(accidents.get(accidentId));
