@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.service.AccidentService;
@@ -79,8 +79,8 @@ public class AccidentController implements UserSessionController {
      * @param accidentId Current Accident id
      * @return updateAccident.html - Accident updating page
      */
-    @GetMapping("/formUpdateAccident/{accidentId}")
-    public String formUpdateTask(Model model, @PathVariable("accidentId") int accidentId) {
+    @GetMapping("/formUpdateAccident")
+    public String formUpdateTask(Model model, @RequestParam("accidentId") int accidentId) {
         Accident accidentById = accidentService.findAccidentById(accidentId)
                 .orElseThrow(() -> new NoSuchElementException("Accident with id " + accidentId + " is missing."));
         model.addAttribute("accident", accidentById);
