@@ -1,9 +1,9 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -17,21 +17,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Accidents</title>
 </head>
-
-<body th:background="@{/images/bg_accidents.jpg}" th:width="1920">
+<body th:background="@{/images/bg_accidents.jpg}" th:background-attachment="fixed" th:width="1920">
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Accidents</a>
+        <a class="navbar-brand" th:href="@{/index}">Accidents</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup" opacity="3">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/allAccidents}">All accidents</a>
+                <a class="nav-item nav-link active" href="#">All accidents<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:if="${user.name == 'Guest'}" th:href="@{/loginPage}">
                     <span th:text="${user.name}"></span>
                     <span> | Log in</span>
@@ -45,7 +46,34 @@
     </nav>
     <br/>
     <br/>
-    <h2 align="center" th:text="'Hi, ' + ${user.name} + '! Welcome to The Accidents Project!'"></h2>
+    <h2 align="center">Accidents for all time:</h2>
+    <br/>
+    <div class="container py-3">
+        <div class="card p-3 mb-2 bg-label text-dark m-auto" style="width: 100%">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Accident name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="accident: ${allAccidents}">
+                    <th>
+                        <span th:text="${accident.name}"></span>
+                    </th>
+                    <th>
+                        <span th:text="${accident.description}"></span>
+                    </th>
+                    <th>
+                        <span th:text="${accident.address}"></span>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>

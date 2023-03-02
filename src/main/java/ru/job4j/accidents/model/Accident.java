@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * User model
+ * Accident model
  *
  * @author itfedorovsa (itfedorovsa@gmail.com)
  * @version 1.0
@@ -16,16 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class User {
+public class Accident {
 
+    @EqualsAndHashCode.Include
     private int id;
-
-    private String login;
-
-    private String password;
 
     private String name;
 
-    private String timezone;
+    private String description;
+
+    private String address;
 
 }
