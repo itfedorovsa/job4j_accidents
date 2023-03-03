@@ -1,0 +1,2 @@
+INSERT INTO accident_types (name) VALUES ('Parking violation'), ('One car and environment'), ('Two cars');
+INSERT INTO accident_types (name) VALUES ('Three or more cars'), ('Car and person'), ('Car and bicycle');

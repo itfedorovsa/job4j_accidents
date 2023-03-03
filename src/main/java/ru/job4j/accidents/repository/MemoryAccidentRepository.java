@@ -2,7 +2,6 @@ package ru.job4j.accidents.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 
 import java.util.*;
@@ -16,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.0
  * @since 02.03.23
  */
-@Repository
+/*@Repository*/
 public class MemoryAccidentRepository implements AccidentRepository {
 
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
@@ -41,10 +40,10 @@ public class MemoryAccidentRepository implements AccidentRepository {
      * @param accident Accident
      */
     @Override
-    public void saveAccident(Accident accident) {
+    public Accident saveAccident(Accident accident) {
         int newId = nextId.incrementAndGet();
         accident.setId(newId);
-        accidents.put(newId, accident);
+        return accidents.put(newId, accident);
     }
 
     /**

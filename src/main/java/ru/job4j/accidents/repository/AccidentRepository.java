@@ -18,7 +18,7 @@ public interface AccidentRepository {
 
     Optional<Accident> findAccidentById(int accidentId);
 
-    void saveAccident(Accident accident);
+    Accident saveAccident(Accident accident);
 
     void updateAccident(Accident accident);
 

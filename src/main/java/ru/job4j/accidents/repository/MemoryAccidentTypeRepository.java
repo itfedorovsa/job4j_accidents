@@ -20,12 +20,12 @@ public class MemoryAccidentTypeRepository implements AccidentTypeRepository {
     private final List<AccidentType> types = new ArrayList<>();
 
     public MemoryAccidentTypeRepository() {
-        types.add(new AccidentType(0, "Abandoned car"));
-        types.add(new AccidentType(1, "One car and environment"));
-        types.add(new AccidentType(2, "Two cars"));
-        types.add(new AccidentType(3, "Three or more cars"));
-        types.add(new AccidentType(4, "Car and person"));
-        types.add(new AccidentType(5, "Car and bicycle"));
+        types.add(new AccidentType(1, "Parking violation"));
+        types.add(new AccidentType(2, "One car and environment"));
+        types.add(new AccidentType(3, "Two cars"));
+        types.add(new AccidentType(4, "Three or more cars"));
+        types.add(new AccidentType(5, "Car and person"));
+        types.add(new AccidentType(6, "Car and bicycle"));
     }
 
     /**

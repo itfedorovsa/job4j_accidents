@@ -1,0 +1,2 @@
+INSERT INTO accidents (name, description, address, type_id) VALUES ('Crash', 'Light damage', 'NY, Grand St. 56', 3);
+INSERT INTO accidents (name, description, address, type_id) VALUES ('Parking', 'Abandoned car', 'NY, Ludlow St. 12', 1);
