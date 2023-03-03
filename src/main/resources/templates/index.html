@@ -32,6 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup" opacity="3">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/allAccidents}">All accidents</a>
+                <a class="nav-item nav-link" th:href="@{/formAddAccident}">Add accident</a>
                 <a class="nav-item nav-link" th:if="${user.name == 'Guest'}" th:href="@{/loginPage}">
                     <span th:text="${user.name}"></span>
                     <span> | Log in</span>
@@ -45,7 +46,7 @@
     </nav>
     <br/>
     <br/>
-    <h2 align="center" th:text="'Hi, ' + ${user.name} + '! Welcome to The Accidents Project!'"></h2>
+    <h2 align="center" th:text="'Hi, ' + ${user.name} + '! Welcome to The Accidents Project!'" style="color: white"></h2>
 </div>
 </body>
 </html>

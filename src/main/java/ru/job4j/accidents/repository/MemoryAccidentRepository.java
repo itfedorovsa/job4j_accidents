@@ -1,5 +1,6 @@
 package ru.job4j.accidents.repository;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -55,13 +56,13 @@ public class MemoryAccidentRepository implements AccidentRepository {
     @Override
     public void updateAccident(Accident accident) {
         int accidentId = accident.getId();
-        if (accidents.containsKey(accidentId)) {
-            accidents.put(accidentId, accident);
-        } else {
+        if (!accidents.containsKey(accidentId)) {
             String errorMessage = "Accident with id " + accidentId + " is missing.";
             logger.error(errorMessage);
-            throw new NoSuchElementException("An accident with this id is missing");
+            throw new NoSuchElementException(errorMessage);
+
         }
+        accidents.put(accidentId, accident);
     }
 
     /**

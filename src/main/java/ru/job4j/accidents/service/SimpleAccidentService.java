@@ -1,5 +1,6 @@
 package ru.job4j.accidents.service;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,10 @@ import java.util.Optional;
  * @since 02.03.23
  */
 @Service
+@AllArgsConstructor
 public class SimpleAccidentService implements AccidentService {
 
-    AccidentRepository store;
+    private final AccidentRepository store;
 
     @Override
     public List<Accident> findAllAccidents() {

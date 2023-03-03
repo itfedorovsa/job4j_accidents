@@ -1,5 +1,6 @@
 package ru.job4j.accidents.controller;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,11 +26,12 @@ import java.util.NoSuchElementException;
  * @since 02.03.23
  */
 @Controller
+@AllArgsConstructor
 public class AccidentController implements UserSessionController {
 
-    AccidentService accidentService;
+    private final AccidentService accidentService;
 
-    AccidentTypeService accidentTypeService;
+    private final AccidentTypeService accidentTypeService;
 
     private final Logger logger = LoggerFactory.getLogger(AccidentController.class);
 
@@ -65,7 +67,7 @@ public class AccidentController implements UserSessionController {
     @GetMapping("/formAddAccident")
     public String formAddAccident(Model model) {
         model.addAttribute("types", accidentTypeService.findAllAccidentTypes());
-        return "formAddAccident";
+        return "accident/addAccident";
     }
 
     /**

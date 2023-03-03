@@ -21,7 +21,7 @@
 
     <title>Accidents</title>
 </head>
-<body>
+<body th:background="@{/images/bg_accidents.jpg}" th:background-attachment="fixed" th:width="1920">
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/index}">Accidents</a>
@@ -44,11 +44,12 @@
             </div>
         </div>
     </nav>
+    <br/>
+    <br/>
+    <h2 align="center" style="color: white">Create new accident:</h2>
+    <br/>
     <div class="row pt-3">
         <div class="card" style="width: 100%">
-            <div class="card-header">
-                Create new accident:
-            </div>
             <div class="card-body">
                 <form th:action="@{/addAccident}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="0"/>
