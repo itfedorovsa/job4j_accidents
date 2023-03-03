@@ -13,7 +13,9 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.service.AccidentService;
 import ru.job4j.accidents.service.AccidentTypeService;
+import ru.job4j.accidents.service.ArticleService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,6 +34,8 @@ public class AccidentController implements UserSessionController {
     private final AccidentService accidentService;
 
     private final AccidentTypeService accidentTypeService;
+
+    private final ArticleService articleService;
 
     private final Logger logger = LoggerFactory.getLogger(AccidentController.class);
 
@@ -62,11 +66,13 @@ public class AccidentController implements UserSessionController {
     /**
      * Accident adding form
      *
+     * @param model Model
      * @return formAddAccident.html - accident adding page
      */
     @GetMapping("/formAddAccident")
     public String formAddAccident(Model model) {
         model.addAttribute("types", accidentTypeService.findAllAccidentTypes());
+        model.addAttribute("articles", articleService.findAllArticles());
         return "accident/addAccident";
     }
 
@@ -74,10 +80,20 @@ public class AccidentController implements UserSessionController {
      * Adding an accident
      *
      * @param accident Accident
+     * @param req      HttpServletRequest
      * @return allAccidents.html - all accidents page
      */
     @PostMapping("/addAccident")
-    public String addAccident(@ModelAttribute Accident accident) {
+    public String addAccident(@ModelAttribute Accident accident, HttpServletRequest req) {
+        String[] ids = req.getParameterValues("aIds");
+        int accidentTypeId = accident.getType().getId();
+        accident.setType(accidentTypeService.findAccidentTypeById(accidentTypeId)
+                .orElseThrow(() -> {
+                    String errorMessage = "AccidentType with id " + accidentTypeId + " is missing.";
+                    logger.error(errorMessage);
+                    return new NoSuchElementException(errorMessage);
+                }));
+        accident.setArticles(articleService.findArticlesById(ids));
         accidentService.saveAccident(accident);
         return "redirect:/allAccidents";
     }
@@ -90,7 +106,7 @@ public class AccidentController implements UserSessionController {
      * @return updateAccident.html - Accident updating page
      */
     @GetMapping("/formUpdateAccident")
-    public String formUpdateTask(Model model, @RequestParam("accidentId") int accidentId) {
+    public String formUpdateAccident(Model model, @RequestParam("accidentId") int accidentId) {
         Accident accidentById = accidentService.findAccidentById(accidentId)
                 .orElseThrow(() -> {
                     String errorMessage = "Accident with id " + accidentId + " is missing.";
@@ -98,6 +114,8 @@ public class AccidentController implements UserSessionController {
                     return new NoSuchElementException(errorMessage);
                 });
         model.addAttribute("accident", accidentById);
+        model.addAttribute("types", accidentTypeService.findAllAccidentTypes());
+        model.addAttribute("articles", articleService.findAllArticles());
         return "accident/updateAccident";
     }
 
@@ -105,10 +123,20 @@ public class AccidentController implements UserSessionController {
      * Adding an accident
      *
      * @param accident Accident
+     * @param req      HttpServletRequest
      * @return allAccidents.html - all accidents page
      */
     @PostMapping("/updateAccident")
-    public String updateAccident(@ModelAttribute Accident accident) {
+    public String updateAccident(@ModelAttribute Accident accident, HttpServletRequest req) {
+        String[] ids = req.getParameterValues("aIds");
+        int accidentTypeId = accident.getType().getId();
+        accident.setType(accidentTypeService.findAccidentTypeById(accidentTypeId)
+                .orElseThrow(() -> {
+                    String errorMessage = "AccidentType with id " + accidentTypeId + " is missing.";
+                    logger.error(errorMessage);
+                    return new NoSuchElementException(errorMessage);
+                }));
+        accident.setArticles(articleService.findArticlesById(ids));
         accidentService.updateAccident(accident);
         return "redirect:/allAccidents";
     }

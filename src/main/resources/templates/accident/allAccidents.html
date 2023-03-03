@@ -58,19 +58,31 @@
                     <th scope="col">Accident name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Address</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Articles</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="accident: ${allAccidents}">
                     <th>
-                        <a th:href="@{|/formUpdateAccident?accidentId=${accident.id}|}" th:text="${accident.name}"></a>
+                        <a th:href="@{|/formUpdateAccident?accidentId=${accident.id}|}">
                         <i class="fa fa-edit"></i>
+                        </a>
+                        <span th:text="${accident.name}"></span>
                     </th>
                     <th>
                         <span th:text="${accident.description}"></span>
                     </th>
                     <th>
                         <span th:text="${accident.address}"></span>
+                    </th>
+                    <th>
+                        <span th:text="${accident.type.name}"></span>
+                    </th>
+                    <th>
+                        <a th:each="article: ${accident.articles}">
+                            <span th:utext="${article.name + '<br>'}"></span>
+                        </a>
                     </th>
                 </tr>
                 </tbody>

@@ -66,6 +66,12 @@
                                     th:text="${type.name}"
                                     th:value="${type.id}"></option>
                         </select>
+                        <label for="aIds" name="aIds">Article(s)</label>
+                        <select class="form-control" id="aIds" name="aIds" multiple>
+                            <option th:each="article: ${articles}"
+                                    th:text="${article.name}"
+                                    th:value="${article.id}"></option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Save</button>
                 </form>

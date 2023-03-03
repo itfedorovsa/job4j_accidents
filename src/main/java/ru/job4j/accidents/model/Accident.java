@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 /**
  * Accident model
  *
@@ -28,5 +30,7 @@ public class Accident {
     private String address;
 
     private AccidentType type;
+
+    private Set<Article> articles;
 
 }

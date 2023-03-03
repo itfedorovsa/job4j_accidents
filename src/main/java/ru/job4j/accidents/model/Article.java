@@ -6,17 +6,17 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * AccidentType model
+ * Article model
  *
  * @author itfedorovsa (itfedorovsa@gmail.com)
  * @version 1.0
- * @since 02.03.23
+ * @since 03.03.23
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class AccidentType {
+public class Article {
 
     @EqualsAndHashCode.Include
     private int id;
