@@ -25,7 +25,7 @@ public class MemoryAccidentRepository implements AccidentRepository {
     private final Logger logger = LoggerFactory.getLogger(MemoryAccidentRepository.class);
 
     /**
-     * Find all Accident
+     * Find all Accident from memory
      *
      * @return List of Accident
      */
@@ -35,7 +35,7 @@ public class MemoryAccidentRepository implements AccidentRepository {
     }
 
     /**
-     * Save Accident
+     * Save Accident to memory
      *
      * @param accident Accident
      */
@@ -47,7 +47,7 @@ public class MemoryAccidentRepository implements AccidentRepository {
     }
 
     /**
-     * Update Accident
+     * Update Accident in memory
      *
      * @param accident Accident
      */
@@ -64,7 +64,7 @@ public class MemoryAccidentRepository implements AccidentRepository {
     }
 
     /**
-     * Find accident by id
+     * Find accident by from memory
      *
      * @param accidentId Accident id
      * @return Optional of AccidentType or empty Optional

@@ -19,6 +19,8 @@ public class MemoryAccidentTypeRepository implements AccidentTypeRepository {
 
     private final List<AccidentType> types = new ArrayList<>();
 
+    private static final int COUNT_COMPENSATION = 1;
+
     public MemoryAccidentTypeRepository() {
         types.add(new AccidentType(1, "Parking violation"));
         types.add(new AccidentType(2, "One car and environment"));
@@ -29,7 +31,7 @@ public class MemoryAccidentTypeRepository implements AccidentTypeRepository {
     }
 
     /**
-     * Find all AccidentType
+     * Find all AccidentType from memory
      *
      * @return List of AccidentType
      */
@@ -39,14 +41,14 @@ public class MemoryAccidentTypeRepository implements AccidentTypeRepository {
     }
 
     /**
-     * Find AccidentType by id
+     * Find AccidentType by id from memory
      *
      * @param accidentTypeId AccidentType id
      * @return Optional of AccidentType or empty Optional
      */
     @Override
     public Optional<AccidentType> findAccidentTypeById(int accidentTypeId) {
-        return Optional.of(types.get(accidentTypeId));
+        return Optional.of(types.get(accidentTypeId - COUNT_COMPENSATION));
     }
 
 }
