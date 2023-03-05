@@ -1,9 +1,9 @@
 package ru.job4j.accidents.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.EqualsAndHashCode.Include;
+
+import javax.persistence.*;
 
 /**
  * AccidentArticle model
@@ -12,17 +12,24 @@ import lombok.NoArgsConstructor;
  * @version 1.0
  * @since 05.03.23
  */
-@Data
-@AllArgsConstructor
+@Entity
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(name = "accidents_articles")
 public class AccidentArticle {
 
-    @EqualsAndHashCode.Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Include
     private int id;
 
+    @Column(name = "accident_id")
     private String accidentId;
 
+    @Column(name = "article_id")
     private String articleId;
 
 }

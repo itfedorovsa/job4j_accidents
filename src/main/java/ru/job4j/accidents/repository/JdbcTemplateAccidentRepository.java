@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import ru.job4j.accidents.controller.AccidentController;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.model.Article;
@@ -25,7 +24,7 @@ import java.util.*;
  * @version 1.0
  * @since 03.03.23
  */
-@Repository
+/*@Repository*/
 @AllArgsConstructor
 public class JdbcTemplateAccidentRepository implements AccidentRepository {
 
@@ -33,8 +32,15 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
 
     private final Logger logger = LoggerFactory.getLogger(JdbcTemplateAccidentRepository.class);
 
-    private static final String ADD_ACCIDENT = """
+    private static final String SAVE_ACCIDENT = """
             INSERT INTO accidents (name, description, address, type_id) VALUES (?, ?, ?, ?);
+            """;
+
+    /**
+     * Update accident (not implemented yet)
+     */
+    private static final String UPDATE_ACCIDENT = """
+            UPDATE accidents SET name = ?, description = ?, address = ?, type = ? WHERE id = ?;
             """;
 
     private static final String FIND_ALL_ACCIDENTS = """
@@ -57,13 +63,6 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
             """;
 
     /**
-     * Update accident (not implemented yet)
-     */
-    private static final String UPDATE_ACCIDENT = """
-            UPDATE accidents SET name = ?, description = ?, address = ?, type = ? WHERE id = ?;
-            """;
-
-    /**
      * Save Accident to db
      *
      * @param accident Accident
@@ -74,7 +73,7 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
         jdbc.update(
                 connection -> {
                     PreparedStatement ps = connection.prepareStatement(
-                            ADD_ACCIDENT,
+                            SAVE_ACCIDENT,
                             new String[]{"id"}
                     );
                     ps.setString(1, accident.getName());
@@ -91,6 +90,17 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
         }
         accident.setId(key);
         return accident;
+    }
+
+    /**
+     * Update Accident in db (not implemented yet)
+     *
+     * @param accident Accident
+     */
+    @Override
+    public void updateAccident(Accident accident) {
+        jdbc.update(UPDATE_ACCIDENT, accident.getName(), accident.getDescription(), accident.getAddress(),
+                accident.getType().getId(), accident.getId());
     }
 
     /**
@@ -147,17 +157,6 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
     @Override
     public Optional<Accident> findAccidentById(int accidentId) {
         return Optional.ofNullable(jdbc.queryForObject(FIND_ACCIDENT_BY_ID, Accident.class, accidentId));
-    }
-
-    /**
-     * Update Accident in db (not implemented yet)
-     *
-     * @param accident Accident
-     */
-    @Override
-    public void updateAccident(Accident accident) {
-        jdbc.update(UPDATE_ACCIDENT, accident.getName(), accident.getDescription(), accident.getAddress(),
-                accident.getType().getId(), accident.getId());
     }
 
 }

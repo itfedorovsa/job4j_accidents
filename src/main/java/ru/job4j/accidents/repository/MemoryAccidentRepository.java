@@ -25,16 +25,6 @@ public class MemoryAccidentRepository implements AccidentRepository {
     private final Logger logger = LoggerFactory.getLogger(MemoryAccidentRepository.class);
 
     /**
-     * Find all Accident from memory
-     *
-     * @return List of Accident
-     */
-    @Override
-    public List<Accident> findAllAccidents() {
-        return new ArrayList<>(accidents.values());
-    }
-
-    /**
      * Save Accident to memory
      *
      * @param accident Accident
@@ -61,6 +51,17 @@ public class MemoryAccidentRepository implements AccidentRepository {
 
         }
         accidents.put(accidentId, accident);
+    }
+
+
+    /**
+     * Find all Accident from memory
+     *
+     * @return List of Accident
+     */
+    @Override
+    public List<Accident> findAllAccidents() {
+        return new ArrayList<>(accidents.values());
     }
 
     /**

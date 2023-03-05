@@ -59,6 +59,7 @@ public class AccidentController implements UserSessionController {
     @GetMapping("/allAccidents")
     public String allAccidents(Model model) {
         List<Accident> allAccidents = accidentService.findAllAccidents();
+        System.out.println(allAccidents.size() + "sizeee");
         model.addAttribute("allAccidents", allAccidents);
         return "accident/allAccidents";
     }

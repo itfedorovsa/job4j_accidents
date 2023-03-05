@@ -14,12 +14,12 @@ import java.util.Optional;
  */
 public interface AccidentRepository {
 
-    List<Accident> findAllAccidents();
-
-    Optional<Accident> findAccidentById(int accidentId);
-
     Accident saveAccident(Accident accident);
 
     void updateAccident(Accident accident);
+
+    List<Accident> findAllAccidents();
+
+    Optional<Accident> findAccidentById(int accidentId);
 
 }
