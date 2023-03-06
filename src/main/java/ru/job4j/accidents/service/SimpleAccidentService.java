@@ -27,7 +27,6 @@ public class SimpleAccidentService implements AccidentService {
     @Override
     public Accident saveAccident(Accident accident) {
         store.saveAccident(accident);
-        accidentArticleRepository.saveAccidentArticle(accident);
         return accident;
     }
 
@@ -44,6 +43,11 @@ public class SimpleAccidentService implements AccidentService {
     @Override
     public Optional<Accident> findAccidentById(int accidentId) {
         return store.findAccidentById(accidentId);
+    }
+
+    @Override
+    public void deleteAccident(Accident accident) {
+        store.deleteAccident(accident);
     }
 
 }

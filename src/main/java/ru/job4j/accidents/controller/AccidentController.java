@@ -142,4 +142,16 @@ public class AccidentController implements UserSessionController {
         return "redirect:/allAccidents";
     }
 
+    /**
+     * Delete Accident
+     *
+     * @param accident "accident" attribute in model
+     * @return allAccidents.html - all accidents page
+     */
+    @PostMapping("/deleteAccident")
+    public String deleteAccident(@ModelAttribute Accident accident) {
+        accidentService.deleteAccident(accident);
+        return "redirect:/allAccidents";
+    }
+
 }

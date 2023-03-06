@@ -74,7 +74,9 @@
                         <select class="form-control" id="aIds" name="aIds" multiple>
                             <option th:each="article: ${articles}"
                                     th:text="${article.name}"
-                                    th:value="${article.id}"></option>
+                                    th:value="${article.id}"
+                                    th:selected="${accident.articles.contains(article)}">
+                            </option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Save</button>

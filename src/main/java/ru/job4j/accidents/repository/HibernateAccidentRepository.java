@@ -1,12 +1,11 @@
 package ru.job4j.accidents.repository;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -20,14 +19,22 @@ import java.util.Optional;
 @AllArgsConstructor
 public class HibernateAccidentRepository implements AccidentRepository {
 
-    private final SessionFactory sf;
+    private final CrudRepository crudRepository;
 
     private static final String FIND_ALL_ACCIDENTS = """
-    SELECT DISTINCT a
-    FROM Accident a
-    JOIN FETCH a.type t
-    JOIN FETCH a.articles ars
-    """;
+            SELECT DISTINCT a
+            FROM Accident a
+            JOIN FETCH a.type t
+            JOIN FETCH a.articles ars
+            """;
+
+    private static final String FIND_ACCIDENT_BY_ID = """
+            SELECT DISTINCT a
+            FROM Accident a
+            JOIN FETCH a.type t
+            JOIN FETCH a.articles ars
+            WHERE a.id = :aId
+            """;
 
     /**
      * Save Accident to db
@@ -36,19 +43,18 @@ public class HibernateAccidentRepository implements AccidentRepository {
      */
     @Override
     public Accident saveAccident(Accident accident) {
-        try (Session session = sf.openSession()) {
-            session.save(accident);
-            return accident;
-        }
+        crudRepository.run(session -> session.save(accident));
+        return accident;
     }
 
     /**
-     * Update Accident (not implemented yet)
+     * Update Accident
      *
      * @param accident Accident
      */
     @Override
     public void updateAccident(Accident accident) {
+        crudRepository.run(session -> session.update(accident));
     }
 
     /**
@@ -58,22 +64,29 @@ public class HibernateAccidentRepository implements AccidentRepository {
      */
     @Override
     public List<Accident> findAllAccidents() {
-        try (Session session = sf.openSession()) {
-            return session
-                    .createQuery(FIND_ALL_ACCIDENTS, Accident.class)
-                    .list();
-        }
+        return crudRepository.query(FIND_ALL_ACCIDENTS,
+                Accident.class);
     }
 
     /**
-     * Find accident by id (not implemented yet)
+     * Find Accident by id
      *
      * @param accidentId Accident id
      * @return Optional of AccidentType or empty Optional
      */
     @Override
     public Optional<Accident> findAccidentById(int accidentId) {
-        return Optional.empty();
+        return crudRepository.optional(FIND_ACCIDENT_BY_ID, Accident.class, Map.of("aId", accidentId));
+    }
+
+    /**
+     * Delete Accident
+     *
+     * @param accident Accident
+     */
+    @Override
+    public void deleteAccident(Accident accident) {
+        crudRepository.run(session -> session.delete(accident));
     }
 
 }

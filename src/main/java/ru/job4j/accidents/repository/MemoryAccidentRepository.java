@@ -75,4 +75,13 @@ public class MemoryAccidentRepository implements AccidentRepository {
         return Optional.of(accidents.get(accidentId));
     }
 
+    /**
+     * Delete Accident (not implemented yet)
+     *
+     * @param accident Accident
+     */
+    @Override
+    public void deleteAccident(Accident accident) {
+    }
+
 }

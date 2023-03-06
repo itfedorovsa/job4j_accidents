@@ -22,4 +22,6 @@ public interface AccidentRepository {
 
     Optional<Accident> findAccidentById(int accidentId);
 
+    void deleteAccident(Accident accident);
+
 }

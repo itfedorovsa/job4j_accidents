@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.model.Article;
@@ -157,6 +156,15 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
     @Override
     public Optional<Accident> findAccidentById(int accidentId) {
         return Optional.ofNullable(jdbc.queryForObject(FIND_ACCIDENT_BY_ID, Accident.class, accidentId));
+    }
+
+    /**
+     * Delete Accident (not implemented yet)
+     *
+     * @param accident Accident
+     */
+    @Override
+    public void deleteAccident(Accident accident) {
     }
 
 }
