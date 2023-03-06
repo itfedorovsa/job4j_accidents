@@ -35,11 +35,11 @@ public class Accident {
     private String address;
 
     @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+            cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "type_id")
     private AccidentType type;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "accidents_articles",
             joinColumns = {@JoinColumn(name = "accident_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "article_id", nullable = false, updatable = false)}

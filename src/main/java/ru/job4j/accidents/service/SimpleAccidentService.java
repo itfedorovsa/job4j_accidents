@@ -1,10 +1,10 @@
 package ru.job4j.accidents.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.repository.AccidentArticleRepository;
-import ru.job4j.accidents.repository.AccidentRepository;
+import ru.job4j.accidents.repository.AccidentDataRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,34 +20,32 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SimpleAccidentService implements AccidentService {
 
-    private final AccidentRepository store;
-
-    private final AccidentArticleRepository accidentArticleRepository;
+    private final AccidentDataRepository store;
 
     @Override
     public Accident saveAccident(Accident accident) {
-        store.saveAccident(accident);
+        store.save(accident);
         return accident;
     }
 
     @Override
     public void updateAccident(Accident accident) {
-        store.updateAccident(accident);
+        store.save(accident);
     }
 
     @Override
     public List<Accident> findAllAccidents() {
-        return store.findAllAccidents();
+        return Streamable.of(store.findAll()).toList();
     }
 
     @Override
     public Optional<Accident> findAccidentById(int accidentId) {
-        return store.findAccidentById(accidentId);
+        return store.findById(accidentId);
     }
 
     @Override
     public void deleteAccident(Accident accident) {
-        store.deleteAccident(accident);
+        store.delete(accident);
     }
 
 }

@@ -1,10 +1,12 @@
 package ru.job4j.accidents.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Article;
-import ru.job4j.accidents.repository.ArticleRepository;
+import ru.job4j.accidents.repository.ArticleDataRepository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -19,16 +21,18 @@ import java.util.Set;
 @AllArgsConstructor
 public class SimpleArticleService implements ArticleService {
 
-    ArticleRepository store;
+    ArticleDataRepository store;
 
     @Override
     public List<Article> findAllArticles() {
-        return store.findAllArticles();
+        return Streamable.of(store.findAll()).toList();
     }
 
     @Override
     public Set<Article> findArticlesById(String[] articleIds) {
-        return store.findArticlesById(articleIds);
+        return Streamable.of(
+                store.findAllById(Arrays.stream(articleIds).map(Integer::parseInt).toList())
+        ).toSet();
     }
 
 }

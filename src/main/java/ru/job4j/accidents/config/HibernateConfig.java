@@ -13,10 +13,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Hibernate config class
+ *
+ * @author itfedorovsa (itfedorovsa@gmail.com)
+ * @version 1.0
+ * @since 05.03.23
+ */
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-public class HbmConfig {
+public class HibernateConfig {
 
     /**
      * Load session factory
