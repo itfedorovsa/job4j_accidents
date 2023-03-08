@@ -35,7 +35,7 @@ public class SimpleAccidentService implements AccidentService {
 
     @Override
     public List<Accident> findAllAccidents() {
-        return Streamable.of(store.findAll()).toList();
+        return store.findAll();
     }
 
     @Override

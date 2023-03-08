@@ -1,7 +1,10 @@
 package ru.job4j.accidents.repository;
 
 import org.springframework.data.repository.CrudRepository;
+import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.Article;
+
+import java.util.List;
 
 /**
  * Article Spring Data repository interface
@@ -10,4 +13,8 @@ import ru.job4j.accidents.model.Article;
  * @version 1.0
  * @since 07.03.23
  */
-public interface ArticleDataRepository extends CrudRepository<Article, Integer> { }
+public interface ArticleDataRepository extends CrudRepository<Article, Integer> {
+
+    List<Article> findAll();
+
+}

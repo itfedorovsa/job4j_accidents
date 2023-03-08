@@ -21,11 +21,11 @@ import java.util.Set;
 @AllArgsConstructor
 public class SimpleArticleService implements ArticleService {
 
-    ArticleDataRepository store;
+    private final ArticleDataRepository store;
 
     @Override
     public List<Article> findAllArticles() {
-        return Streamable.of(store.findAll()).toList();
+        return store.findAll();
     }
 
     @Override
