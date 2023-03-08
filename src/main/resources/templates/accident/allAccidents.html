@@ -35,12 +35,8 @@
 
                 <a class="nav-item nav-link active" href="#">All accidents<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/formAddAccident}">Add accident</a>
-                <a class="nav-item nav-link" th:if="${user.name == 'Guest'}" th:href="@{/loginPage}">
-                    <span th:text="${user.name}"></span>
-                    <span> | Log in</span>
-                </a>
-                <a class="nav-item nav-link" th:if="${user.name != 'Guest'}" th:href="@{/logout}">
-                    <span th:text="${user.name}"></span>
+                <a class="nav-item nav-link" th:href="@{/logout}">
+                    <span th:text="${user.login}"></span>
                     <span> | Log out</span>
                 </a>
             </div>

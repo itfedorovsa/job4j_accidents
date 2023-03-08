@@ -1,10 +1,9 @@
 package ru.job4j.accidents.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * Index controller
@@ -19,13 +18,12 @@ public class IndexController implements UserSessionController {
     /**
      * Index page
      *
-     * @param model       Model
-     * @param httpSession Http Session
+     * @param model Model
      * @return index.html - start page
      */
     @GetMapping("/index")
-    public String index(Model model, HttpSession httpSession) {
-        model.addAttribute("user", getUser(httpSession));
+    public String index(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "index";
     }
 

@@ -19,7 +19,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder(builderMethodName = "of")
-@Table(name = "users")
+/*@Table(name = "users")*/
 public class User {
 
     @Id
