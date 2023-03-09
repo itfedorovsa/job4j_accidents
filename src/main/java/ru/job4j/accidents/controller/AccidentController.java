@@ -44,7 +44,7 @@ public class AccidentController {
      *
      * @return UserDetails
      */
-    @ModelAttribute("userDetails")
+    @ModelAttribute("user")
     public UserDetails addUserDetailsToModel() {
         return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
