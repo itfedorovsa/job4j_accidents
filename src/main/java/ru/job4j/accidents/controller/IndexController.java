@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @since 02.03.23
  */
 @Controller
-public class IndexController implements UserSessionController {
+public class IndexController {
 
     /**
      * Index page

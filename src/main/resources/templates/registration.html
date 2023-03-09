@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <!-- Required meta tags -->
@@ -17,33 +17,38 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+
     <title>Accidents</title>
 </head>
-
-<body th:background="@{/images/bg_accidents.jpg}" th:width="1920">
-
+<body th:background="@{/images/bg_accidents.jpg}" th:background-attachment="fixed" th:width="1920">
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Accidents</a>
+        <a class="navbar-brand" th:href="@{/index}">Accidents</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" opacity="3">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/allAccidents}">All accidents</a>
-                <a class="nav-item nav-link" th:href="@{/formAddAccident}">Add accident</a>
-                <a class="nav-item nav-link" th:href="@{/logout}">
-                    <span th:text="${user?.username}"></span>
-                    <span> | Log out</span>
-                </a>
+    </nav>
+    <br/><br/>
+    <div class="row m-auto">
+        <div class="card p-3 mb-2 bg-label text-dark col-md-6 m-auto" style="width: 100%">
+            <div class="card-header">
+                <h4>Sign up</h4>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/registerUser}" method="POST">
+                    <input type="hidden" name="id" value="0"/>
+                    <div class="form-group">
+                        <label for="username">Login</label>
+                        <input type="text" class="form-control" name="username" id="username">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
             </div>
         </div>
-    </nav>
-    <br/>
-    <br/>
-    <h2 align="center" th:text="'Hi, ' + ${user?.username} + '! Welcome to The Accidents Project!'"
-        style="color: white"></h2>
+    </div>
 </div>
 </body>
 </html>

@@ -36,7 +36,7 @@
                 <a class="nav-item nav-link active" href="#">All accidents<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/formAddAccident}">Add accident</a>
                 <a class="nav-item nav-link" th:href="@{/logout}">
-                    <span th:text="${user.login}"></span>
+                    <span th:text="${user.username}"></span>
                     <span> | Log out</span>
                 </a>
             </div>
@@ -62,7 +62,7 @@
                 <tr th:each="accident: ${allAccidents}">
                     <th>
                         <a th:href="@{|/formUpdateAccident?accidentId=${accident.id}|}">
-                        <i class="fa fa-edit"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                         <span th:text="${accident.name}"></span>
                     </th>

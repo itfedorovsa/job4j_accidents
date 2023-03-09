@@ -3,6 +3,8 @@ package ru.job4j.accidents.controller;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.service.AccidentService;
 import ru.job4j.accidents.service.AccidentTypeService;
 import ru.job4j.accidents.service.ArticleService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -29,7 +29,7 @@ import java.util.NoSuchElementException;
  */
 @Controller
 @AllArgsConstructor
-public class AccidentController implements UserSessionController {
+public class AccidentController {
 
     private final AccidentService accidentService;
 
@@ -40,14 +40,13 @@ public class AccidentController implements UserSessionController {
     private final Logger logger = LoggerFactory.getLogger(AccidentController.class);
 
     /**
-     * Add User in Model by "user" key in all Model in this controller
+     * Add UserDetails in Model by "user" key in all Model in this controller
      *
-     * @param httpSession HTTPSession
-     * @return User
+     * @return UserDetails
      */
-    @ModelAttribute("user")
-    public User addUserToModel(HttpSession httpSession) {
-        return getUser(httpSession);
+    @ModelAttribute("userDetails")
+    public UserDetails addUserDetailsToModel() {
+        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     /**
@@ -59,7 +58,6 @@ public class AccidentController implements UserSessionController {
     @GetMapping("/allAccidents")
     public String allAccidents(Model model) {
         List<Accident> allAccidents = accidentService.findAllAccidents();
-        System.out.println(allAccidents.size() + "sizeee");
         model.addAttribute("allAccidents", allAccidents);
         return "accident/allAccidents";
     }

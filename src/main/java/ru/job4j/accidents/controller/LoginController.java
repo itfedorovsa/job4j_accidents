@@ -33,8 +33,8 @@ public class LoginController {
      */
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
-                            @RequestParam(value = "logout", required = false) String logout,
-                            Model model) {
+                        @RequestParam(value = "logout", required = false) String logout,
+                        Model model) {
         String errorMessage = null;
         if (error != null) {
             errorMessage = "Username or Password is incorrect!";

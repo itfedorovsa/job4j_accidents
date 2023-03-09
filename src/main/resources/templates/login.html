@@ -21,12 +21,25 @@
 
     <title>Accidents</title>
 </head>
-<body th:background="@{/images/bg_accidents.jpg}" th:background-attachment="fixed" th:width="1920">
-<div class="container pt-3">
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/index}">Accidents</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" th:href="@{/registration}">Sign up</a>
+            </div>
+        </div>
+    </nav>
+    <br/><br/>
     <div class="row m-auto">
-        <div class="card p-3 mb-2 bg-label text-dark col-md-6 m-auto" style="width: 100% color: white">
+        <div class="card p-3 mb-2 bg-label text-dark col-md-6 m-auto" style="width: 100%">
             <div class="card-header">
-                Log in or register to continue
+                <h4>Log in or register to continue</h4>
             </div>
             <div class="card-body">
                 <div th:if="${not #lists.isEmpty(errorMessage)}" class="alert alert-danger" role="alert">
@@ -34,15 +47,14 @@
                 </div>
                 <form th:action="@{/login}" method="POST">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="username" name="username">
+                    <div class="form-group">
                         <label for="username">Login</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="text" class="form-control" id="username" name="username">
+                        <div class="form-group">
+                        </div>
                         <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
-                    <hr class="my-4">
                     <button type="submit" class="btn btn-primary">Log in</button>
                 </form>
             </div>
