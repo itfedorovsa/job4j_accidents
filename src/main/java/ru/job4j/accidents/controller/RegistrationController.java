@@ -35,9 +35,11 @@ public class RegistrationController {
      */
     @PostMapping("/registerUser")
     public String registerUser(@ModelAttribute User user) {
+        System.out.println(user + "useee");
         user.setEnabled(true);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setAuthority(authorities.findByAuthority("ROLE_USER"));
+        System.out.println(user + "useee2");
         users.save(user);
         return "redirect:/login";
     }
