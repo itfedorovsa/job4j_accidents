@@ -2,8 +2,8 @@ package ru.job4j.accidents.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.repository.AccidentArticleRepository;
+import ru.job4j.accidents.model.AccidentArticle;
+import ru.job4j.accidents.repository.AccidentArticleDataRepository;
 
 /**
  * AccidentArticle service layer
@@ -16,11 +16,11 @@ import ru.job4j.accidents.repository.AccidentArticleRepository;
 @AllArgsConstructor
 public class SimpleAccidentArticleService implements AccidentArticleService {
 
-    private final AccidentArticleRepository store;
+    private final AccidentArticleDataRepository store;
 
     @Override
-    public void saveAccidentArticle(Accident accident) {
-        store.saveAccidentArticle(accident);
+    public void saveAccidentArticle(AccidentArticle accidentArticle) {
+        store.save(accidentArticle);
     }
 
 }

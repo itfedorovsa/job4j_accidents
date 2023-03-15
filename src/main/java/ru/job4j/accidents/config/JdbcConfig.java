@@ -17,9 +17,9 @@ import javax.sql.DataSource;
  * @version 1.0
  * @since 03.03.23
  */
-/*@Configuration
+@Configuration
 @PropertySource("classpath:db.properties")
-@EnableTransactionManagement*/
+@EnableTransactionManagement
 public class JdbcConfig {
 
     /**
@@ -31,7 +31,7 @@ public class JdbcConfig {
      * @param password Password
      * @return DataSource
      */
-    /*@Bean*/
+    @Bean
     public DataSource ds(@Value("${jdbc.driver}") String driver,
                          @Value("${jdbc.url}") String url,
                          @Value("${jdbc.username}") String username,
@@ -50,7 +50,7 @@ public class JdbcConfig {
      * @param ds DataSource
      * @return JdbcTemplate
      */
-    /*@Bean*/
+    @Bean
     public JdbcTemplate jdbc(DataSource ds) {
         return new JdbcTemplate(ds);
     }

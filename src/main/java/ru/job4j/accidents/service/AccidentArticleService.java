@@ -1,6 +1,6 @@
 package ru.job4j.accidents.service;
 
-import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.AccidentArticle;
 
 /**
  * AccidentArticle service interface
@@ -11,6 +11,6 @@ import ru.job4j.accidents.model.Accident;
  */
 public interface AccidentArticleService {
 
-    void saveAccidentArticle(Accident accident);
+    void saveAccidentArticle(AccidentArticle accidentArticle);
 
 }
