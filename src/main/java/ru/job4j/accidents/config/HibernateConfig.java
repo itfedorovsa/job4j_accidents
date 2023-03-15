@@ -20,9 +20,9 @@ import java.util.Properties;
  * @version 1.0
  * @since 05.03.23
  */
-@Configuration
+/*@Configuration
 @PropertySource("classpath:db.properties")
-@EnableTransactionManagement
+@EnableTransactionManagement*/
 public class HibernateConfig {
 
     /**
@@ -32,7 +32,7 @@ public class HibernateConfig {
      * @param ds      DataSource
      * @return LocalSessionFactoryBean
      */
-    @Bean
+    /*@Bean*/
     public LocalSessionFactoryBean sessionFactory(@Value("${hibernate.dialect}") String dialect, DataSource ds) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(ds);
@@ -47,7 +47,7 @@ public class HibernateConfig {
      * @param sf SessionFactory
      * @return HibernateTransactionManager
      */
-    @Bean
+    /*@Bean*/
     public PlatformTransactionManager htx(SessionFactory sf) {
         HibernateTransactionManager tx = new HibernateTransactionManager();
         tx.setSessionFactory(sf);
