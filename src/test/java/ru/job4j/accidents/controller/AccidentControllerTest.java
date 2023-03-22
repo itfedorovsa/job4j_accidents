@@ -65,12 +65,24 @@ class AccidentControllerTest {
                 .andExpect(view().name("accident/addAccident"));
     }
 
+    /**
+     * Disabled. Need to fix
+     */
     @Disabled
     @Test
     @WithMockUser
     public void whenUpdateAccidentPageThenReturnUpdateAccidentMessage() throws Exception {
+        /*Accident accident = Accident.of()
+                .id(25)
+                .name("crash")
+                .description("desc")
+                .address("address")
+                .type(new AccidentType(1, "type"))
+                .articles(Set.of(new Article(1, "article")))
+                .build();
+        accidentService.saveAccident(accident);*/
         this.mockMvc.perform(get("/formUpdateAccident")
-                        .param("accidentId", "1"))
+                        .param("accidentId", "25"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("accident/updateAccident"));
