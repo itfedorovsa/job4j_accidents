@@ -15,6 +15,12 @@ import java.util.Optional;
  */
 public interface AuthorityDataRepository extends CrudRepository<Authority, Integer> {
 
+    /**
+     * Find authority by name
+     *
+     * @param authority Authority
+     * @return Optional of Authority
+     */
     @Query(value = "SELECT * FROM authorities WHERE authority = ?1", nativeQuery = true)
     Optional<Authority> findAuthorityByName(String authority);
 

@@ -14,6 +14,11 @@ import java.util.List;
  */
 public interface AccidentDataRepository extends CrudRepository<Accident, Integer> {
 
+    /**
+     * Find all accidents
+     *
+     * @return List of Accident
+     */
     List<Accident> findAll();
 
 }

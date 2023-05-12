@@ -11,6 +11,11 @@ import ru.job4j.accidents.model.Accident;
  */
 public interface AccidentArticleRepository {
 
+    /**
+     * Save AccidentArticle to db
+     *
+     * @param accident Accident
+     */
     void saveAccidentArticle(Accident accident);
 
 }

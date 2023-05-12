@@ -18,6 +18,12 @@ public class SimpleUserService implements UserService {
 
     private final UserDataRepository store;
 
+    /**
+     * Save user
+     *
+     * @param user User
+     * @return User
+     */
     @Override
     public User saveUser(User user) {
         store.save(user);

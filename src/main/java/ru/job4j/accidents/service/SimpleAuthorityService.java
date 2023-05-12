@@ -20,6 +20,12 @@ public class SimpleAuthorityService implements AuthorityService {
 
     private final AuthorityDataRepository store;
 
+    /**
+     * Find authority by name
+     *
+     * @param authority Authority
+     * @return Optional of Authority
+     */
     @Override
     public Optional<Authority> findAuthorityByName(String authority) {
         return store.findAuthorityByName(authority);

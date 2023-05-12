@@ -14,8 +14,19 @@ import java.util.Optional;
  */
 public interface AccidentTypeService {
 
+    /**
+     * Find all AccidentType from memory
+     *
+     * @return List of AccidentType
+     */
     List<AccidentType> findAllAccidentTypes();
 
+    /**
+     * Find AccidentType by id from memory
+     *
+     * @param accidentTypeId AccidentType id
+     * @return Optional of AccidentType or empty Optional
+     */
     Optional<AccidentType> findAccidentTypeById(int accidentTypeId);
 
 }

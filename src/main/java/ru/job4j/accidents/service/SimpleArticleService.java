@@ -23,11 +23,22 @@ public class SimpleArticleService implements ArticleService {
 
     private final ArticleDataRepository store;
 
+    /**
+     * Find all Article
+     *
+     * @return List of Article
+     */
     @Override
     public List<Article> findAllArticles() {
         return store.findAll();
     }
 
+    /**
+     * Find Article by id
+     *
+     * @param articleIds Article ids
+     * @return Set of Article
+     */
     @Override
     public Set<Article> findArticlesById(String[] articleIds) {
         return Streamable.of(

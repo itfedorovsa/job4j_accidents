@@ -11,6 +11,11 @@ import ru.job4j.accidents.model.AccidentArticle;
  */
 public interface AccidentArticleService {
 
+    /**
+     * Save AccidentArticle
+     *
+     * @param accidentArticle AccidentArticle
+     */
     void saveAccidentArticle(AccidentArticle accidentArticle);
 
 }

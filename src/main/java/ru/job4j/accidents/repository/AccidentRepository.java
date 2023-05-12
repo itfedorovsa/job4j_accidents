@@ -14,14 +14,41 @@ import java.util.Optional;
  */
 public interface AccidentRepository {
 
+    /**
+     * Save accident to db
+     *
+     * @param accident Accident
+     * @return Accident
+     */
     Accident saveAccident(Accident accident);
 
+    /**
+     * Update accident
+     *
+     * @param accident Accident
+     */
     void updateAccident(Accident accident);
 
+    /**
+     * Find all accidents
+     *
+     * @return List of Accident
+     */
     List<Accident> findAllAccidents();
 
+    /**
+     * Find accident by id
+     *
+     * @param accidentId Accident id
+     * @return Optional of Accident
+     */
     Optional<Accident> findAccidentById(int accidentId);
 
+    /**
+     * Delete accident
+     *
+     * @param accident Accident
+     */
     void deleteAccident(Accident accident);
 
 }

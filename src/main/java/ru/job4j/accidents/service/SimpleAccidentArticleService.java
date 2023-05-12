@@ -18,6 +18,11 @@ public class SimpleAccidentArticleService implements AccidentArticleService {
 
     private final AccidentArticleDataRepository store;
 
+    /**
+     * Save AccidentArticle
+     *
+     * @param accidentArticle AccidentArticle
+     */
     @Override
     public void saveAccidentArticle(AccidentArticle accidentArticle) {
         store.save(accidentArticle);

@@ -21,11 +21,22 @@ public class SimpleAccidentTypeService implements AccidentTypeService {
 
     private final AccidentTypeDataRepository store;
 
+    /**
+     * Find all AccidentType from memory
+     *
+     * @return List of AccidentType
+     */
     @Override
     public List<AccidentType> findAllAccidentTypes() {
         return store.findAll();
     }
 
+    /**
+     * Find AccidentType by id from memory
+     *
+     * @param accidentTypeId AccidentType id
+     * @return Optional of AccidentType or empty Optional
+     */
     @Override
     public Optional<AccidentType> findAccidentTypeById(int accidentTypeId) {
         return store.findById(accidentTypeId);

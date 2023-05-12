@@ -14,8 +14,19 @@ import java.util.Set;
  */
 public interface ArticleRepository {
 
+    /**
+     * Find all Article
+     *
+     * @return List of Article
+     */
     List<Article> findAllArticles();
 
+    /**
+     * Find Article by id
+     *
+     * @param articleIds Article ids
+     * @return Set of Article
+     */
     Set<Article> findArticlesById(String[] articleIds);
 
 }

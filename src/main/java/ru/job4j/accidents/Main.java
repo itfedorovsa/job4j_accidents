@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Main {
 
     /**
-     * Starts the application.
+     * Starts the application
      *
      * @param args app arguments
      */

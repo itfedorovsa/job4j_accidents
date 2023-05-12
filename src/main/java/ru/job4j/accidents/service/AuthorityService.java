@@ -13,6 +13,12 @@ import java.util.Optional;
  */
 public interface AuthorityService {
 
+    /**
+     * Find authority by name
+     *
+     * @param authority Authority
+     * @return Optional of Authority
+     */
     Optional<Authority> findAuthorityByName(String authority);
 
 }

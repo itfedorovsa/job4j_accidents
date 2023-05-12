@@ -11,6 +11,12 @@ import ru.job4j.accidents.model.User;
  */
 public interface UserService {
 
+    /**
+     * Save user
+     *
+     * @param user User
+     * @return User
+     */
     User saveUser(User user);
 
 }
